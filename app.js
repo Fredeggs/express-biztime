@@ -8,6 +8,12 @@ const ExpressError = require("./expressError")
 
 app.use(express.json());
 
+const cRoutes = require("./routes/companies");
+app.use("/companies", cRoutes);
+
+const iRoutes = require("./routes/invoices");
+app.use("/invoices", iRoutes);
+
 
 /** 404 handler */
 
@@ -22,8 +28,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
 
   return res.json({
-    error: err,
-    message: err.message
+    error: err
   });
 });
 
